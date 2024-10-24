@@ -36,6 +36,9 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.rotate
@@ -68,6 +71,9 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun telaCriarNota() {
+
+    val nota by remember { mutableStateOf("") }
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -217,10 +223,17 @@ fun telaCriarNota() {
                                 contentAlignment = Alignment.Center
                             ) {
                                 Text(
-                                    text = "",
-                                    textAlign = TextAlign.Center,
+                                    text = "Digite sua nota:",
                                     fontWeight = FontWeight.Bold,
-                                    color = Color(0xFF2754B2)
+                                    fontSize = 18.sp,
+                                    modifier = Modifier.padding(bottom = 8.dp)
+                                )
+
+                                TextField(
+                                    value = nota,
+                                    onValueChange = { nota },
+                                    placeholder = { Text("Digite sua nota aqui...") },
+                                    modifier = Modifier.fillMaxWidth()
                                 )
                             }
                         }
