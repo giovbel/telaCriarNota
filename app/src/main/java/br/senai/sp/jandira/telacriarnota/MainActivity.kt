@@ -22,6 +22,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.ArrowForward
@@ -222,19 +223,21 @@ fun telaCriarNota() {
                                 ,
                                 contentAlignment = Alignment.Center
                             ) {
-                                Text(
-                                    text = "Digite sua nota:",
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 18.sp,
-                                    modifier = Modifier.padding(bottom = 8.dp)
+
+                                BasicTextField(
+                                    value = nota,
+                                    onValueChange = { /* ação ao mudar o valor */ },
+                                    modifier = Modifier
+                                        .fillMaxWidth()
+                                        .background(Color.Transparent), // Define o fundo como transparente
+                                    decorationBox = { innerTextField ->
+                                        if (nota.isEmpty()) {
+                                            Text("Digite sua nota aqui...", color = Color.Gray)
+                                        }
+                                        innerTextField() // Insere o campo de texto
+                                    }
                                 )
 
-                                TextField(
-                                    value = nota,
-                                    onValueChange = { nota },
-                                    placeholder = { Text("Digite sua nota aqui...") },
-                                    modifier = Modifier.fillMaxWidth()
-                                )
                             }
                         }
 
